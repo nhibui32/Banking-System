@@ -23,7 +23,7 @@ void display_menu()
 	cout << "\t 4. Quit" << endl;
 }
 
-void cust_001()
+double cust_001()
 {
 	fstream file;
 	file.open("Cust_001.dat", ios::in | ios::out);
@@ -31,7 +31,7 @@ void cust_001()
     if(!file.is_open())
     {
         cout << "Failed to open the file." << endl;
-		return;
+		return 1;
     }
 
     string name;
@@ -41,7 +41,7 @@ void cust_001()
 
     string line;
     int sum = 0;
-    while (getline(file,line))
+    while (getline(file,line)) // Reads a line from the input stream 'file' store it in the string variable 'line'. Return true if the operation was sucessful and have more lines to read. 
     {
         stringstream ss(line);
         string date;
@@ -53,13 +53,11 @@ void cust_001()
         // Add the amount to the sum
         sum += amount; 
     }
-
-    cout << "Total sum: " << sum << endl;
 	file.close();
-
+    return sum;
 }
 
-void cust_007()
+double cust_007()
 {
 	fstream file;
 	file.open("Cust_007.dat", ios::in | ios::out);
@@ -67,6 +65,7 @@ void cust_007()
     if(!file.is_open())
     {
         cout << "Failed to open the file." << endl;
+		return 0;
     }
 
     string name;
@@ -76,7 +75,7 @@ void cust_007()
 
     string line;
     int sum = 0;
-    while (getline(file,line))
+    while (getline(file,line)) // Reads a line from the input stream 'file' store it in the string variable 'line'. Return true if the operation was sucessful and have more lines to read. 
     {
         stringstream ss(line);
         string date;
@@ -88,12 +87,11 @@ void cust_007()
         // Add the amount to the sum
         sum += amount; 
     }
-
-    cout << "Total sum: " << sum << endl;
-    file.close();
+	file.close();
+    return sum;
 }
 
-void cust_020()
+double cust_020()
 {
 	fstream file;
 	file.open("Cust_020.dat", ios::in | ios::out);
@@ -101,6 +99,7 @@ void cust_020()
     if(!file.is_open())
     {
         cout << "Failed to open the file." << endl;
+		return 0;
     }
 
     string name;
@@ -110,7 +109,7 @@ void cust_020()
 
     string line;
     int sum = 0;
-    while (getline(file,line))
+    while (getline(file,line)) // Reads a line from the input stream 'file' store it in the string variable 'line'. Return true if the operation was sucessful and have more lines to read. 
     {
         stringstream ss(line);
         string date;
@@ -122,12 +121,11 @@ void cust_020()
         // Add the amount to the sum
         sum += amount; 
     }
-
-    cout << "Total sum: " << sum << endl;
-    file.close();
+	file.close();
+    return sum;
 }
 
-void cust_400()
+double cust_400()
 {
 	fstream file;
 	file.open("Cust_400.dat", ios::in | ios::out);
@@ -135,6 +133,7 @@ void cust_400()
     if(!file.is_open())
     {
         cout << "Failed to open the file." << endl;
+		return 0;
     }
 
     string name;
@@ -144,7 +143,7 @@ void cust_400()
 
     string line;
     int sum = 0;
-    while (getline(file,line))
+    while (getline(file,line)) // Reads a line from the input stream 'file' store it in the string variable 'line'. Return true if the operation was sucessful and have more lines to read. 
     {
         stringstream ss(line);
         string date;
@@ -156,15 +155,14 @@ void cust_400()
         // Add the amount to the sum
         sum += amount; 
     }
-
-    cout << "Total sum: " << sum << endl;
-    file.close();
+	file.close();
+    return sum;
 }
 
 int main ()
 {
 	// Variables:
-	int option;
+	int option, sum;
 	string ID;
 	display_menu();
 
@@ -186,28 +184,154 @@ int main ()
 			cin >> ID;
 			if (ID == "001")
 			{
-				cust_001();
+                sum = cust_001();
+                cout << "The account balance is: " << sum << endl;
+				
 			}
 			else if (ID == "007")
 			{
-				cust_007();
+				sum = cust_007();
+                cout << "The account balance is: " << sum << endl;
 			}
 			else if (ID == "020")
 			{
-				cust_020();
+				sum = cust_020();
+                cout << "The account balance is: " << sum << endl;
 			}
 			else if (ID == "400")
 			{
-				cust_400();
+				sum = cust_400();
+                cout << "The account balance is: " << sum << endl;
 			}
 			else
 			{
 				cout << "Input Invalidation.";
 			}
-		case 2: //Deposit
-		
-	}
+        break;
 
+        case 2: // Deposit 
+            cout << "Enter a 3-digit customer ID: ";
+			cin >> ID;
+			if (ID == "001")
+			{
+                double sum, deposit_amount, new_balance;
+                sum = cust_001();
+                cout << "The account balance is: " << sum << endl;
+                cout << "Please enter the deposit amount: ";
+                cin >> deposit_amount;
+                new_balance = sum + deposit_amount;
+                cout << "The current balance is: " << new_balance;
+			}
+			else if (ID == "007")
+			{
+                double sum, deposit_amount, new_balance;
+                sum = cust_007();
+                cout << "The account balance is: " << sum << endl;
+                cout << "Please enter the deposit amount: ";
+                cin >> deposit_amount;
+                new_balance = sum + deposit_amount;
+                cout << "The current balance is: " << new_balance;
+
+			}
+			else if (ID == "020")
+			{
+                double sum, deposit_amount, new_balance;
+                sum = cust_020();
+                cout << "The account balance is: " << sum << endl;
+                cout << "Please enter the deposit amount: ";
+                cin >> deposit_amount;
+                new_balance = sum + deposit_amount;
+                cout << "The current balance is: " << new_balance;
+
+			}
+			else if (ID == "400")
+			{
+                double sum, deposit_amount, new_balance;
+                sum = cust_400();
+                cout << "The account balance is: " << sum << endl;
+                cout << "Please enter the deposit amount: ";
+                cin >> deposit_amount;
+                new_balance = sum + deposit_amount;
+                cout << "The current balance is: " << new_balance;
+
+			}
+			else
+			{
+				cout << "Input Invalidation.";
+			}
+        break;
+
+        case 3: // withdraw
+			cout << "Enter a 3-digit customer ID: ";
+			cin >> ID;
+			if (ID == "001")
+			{
+                double sum, withdraw_amount, new_balance;
+                sum = cust_001();
+                cout << "The account balance is: " << sum << endl;
+                cout << "Please enter the withdraw amount: ";
+                cin >> withdraw_amount;
+                new_balance = sum - withdraw_amount;
+                if (sum >= withdraw_amount)
+                {
+                    cout << "The current balance is: " << new_balance;
+                }
+                else 
+                cout << "Not enough money for the withdraw";
+			}
+			else if (ID == "007")
+			{
+                double sum, withdraw_amount, new_balance;
+                sum = cust_007();
+                cout << "The account balance is: " << sum << endl;
+                cout << "Please enter the withdraw amount: ";
+                cin >> withdraw_amount;
+                new_balance = sum - withdraw_amount;
+                if (sum >= withdraw_amount)
+                {
+                    cout << "The current balance is: " << new_balance;
+                }
+                else 
+                cout << "Not enough money for the withdraw";
+			}
+			else if (ID == "020")
+			{
+                double sum, withdraw_amount, new_balance;
+                sum = cust_020();
+                cout << "The account balance is: " << sum << endl;
+                cout << "Please enter the withdraw amount: ";
+                cin >> withdraw_amount;
+                new_balance = sum - withdraw_amount;
+                if (sum >= withdraw_amount)
+                {
+                    cout << "The current balance is: " << new_balance;
+                }
+                else 
+                cout << "Not enough money for the withdraw";
+			}
+			else if (ID == "400")
+			{
+                double sum, withdraw_amount, new_balance;
+                sum = cust_400();
+                cout << "The account balance is: " << sum << endl;
+                cout << "Please enter the withdraw amount: ";
+                cin >> withdraw_amount;
+                new_balance = sum - withdraw_amount;
+                if (sum >= withdraw_amount)
+                {
+                    cout << "The current balance is: " << new_balance;
+                }
+                else 
+                cout << "Not enough money for the withdraw";
+			}
+			else
+			{
+				cout << "Input Invalidation.";
+			}
+        break;
+        case 4:
+        cout << "Thank you.";
+	}
     return 0;
 }
 
