@@ -60,9 +60,19 @@ double cust(string ID)
 int main ()
 {
 	// Variables:
-	int option, sum;
+	int option;
 	string ID;
+	double current_balance, deposit_amount, new_balance, withdraw_amount;
 	display_menu();
+	do 
+	{
+		cout << "Enter a 3-digit customer ID: ";
+		cin >> ID;
+		if (ID != "001" && ID != "007" && ID != "020" && ID !="400")
+		{
+			cout << "Input Invalidation. \n";
+		}
+	} while(ID != "001" && ID != "007" && ID != "020" && ID != "400");
 
 	// Processing
 	do
@@ -78,12 +88,10 @@ int main ()
 	switch(option)
 	{
 		case 1: // Account summary 
-			cout << "Enter a 3-digit customer ID: ";
-			cin >> ID;
 			if (ID == "001" || ID == "007" || ID == "020" || ID == "400")
 			{
-                sum = cust(ID);
-                cout << "The account balance is: " << sum << endl;
+                current_balance = cust(ID);
+                cout << "The account balance is: " << current_balance << endl;
 			}
 			else
 			{
@@ -93,16 +101,13 @@ int main ()
         break;
 
         case 2: // Deposit 
-            cout << "Enter a 3-digit customer ID: ";
-			cin >> ID;
 			if (ID == "001" || ID == "007" || ID == "020" || ID == "400")
 			{
-                double sum, deposit_amount, new_balance;
-                sum = cust(ID);
-                cout << "The account balance is: " << sum << endl;
+                current_balance = cust(ID);
+                cout << "The account balance is: " << current_balance << endl;
                 cout << "Please enter the deposit amount: ";
                 cin >> deposit_amount;
-                new_balance = sum + deposit_amount;
+                new_balance = current_balance + deposit_amount;
                 cout << "The current balance is: " << new_balance;
 			}
 			else
@@ -112,17 +117,14 @@ int main ()
         break;
 
         case 3: // withdraw
-			cout << "Enter a 3-digit customer ID: ";
-			cin >> ID;
 			if (ID == "001" || ID == "007" || ID == "020" || ID == "400")
 			{
-                double sum, withdraw_amount, new_balance;
-                sum = cust(ID);
-                cout << "The account balance is: " << sum << endl;
+                current_balance = cust(ID);
+                cout << "The account balance is: " << current_balance << endl;
                 cout << "Please enter the withdraw amount: ";
                 cin >> withdraw_amount;
-                new_balance = sum - withdraw_amount;
-                if (sum >= withdraw_amount)
+                new_balance = current_balance - withdraw_amount;
+                if (current_balance >= withdraw_amount)
                 {
                     cout << "The current balance is: " << new_balance;
                 }
@@ -139,6 +141,16 @@ int main ()
         default:
             cout << "Input Invalidation.";
 	}
+	/* fstream file;
+	file.open("Cust_" + ID + ".dat", ios::in | ios::out);
+
+    if(!file.is_open())
+    {
+        cout << "Failed to open the file." << endl;
+		return 0;
+    }
+	file << "The current balance is: " << new_balance;
+	file.close(); */
     return 0;
 }
 
